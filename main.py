@@ -62,42 +62,42 @@ def main(page: ft.Page):
 
     # Handlers per la gestione dei pulsanti utili all'inserimento di un nuovo strumento
     # TODO
-        def diminuisci_valore(e):
-            # Decrementa il contatore di 1 euro, senza scendere sotto lo 0
-            v = int(txt_valore.value)
-            if v > 0:
-                v = v - 1
-            txt_valore.value = v
-            txt_valore.update()
+    def diminuisci_valore(e):
+        # Decrementa il contatore di 1 euro, senza scendere sotto lo 0
+        v = int(txt_valore.value)
+        if v > 0:
+            v = v - 1
+        txt_valore.value = v
+        txt_valore.update()
 
-        def aumenta_valore(e):
-            # Incrementa il contatore di 1 euro
-            v = int(txt_valore.value)
-            v = v + 1
-            txt_valore.value = v
-            txt_valore.update()
+    def aumenta_valore(e):
+        # Incrementa il contatore di 1 euro
+        v = int(txt_valore.value)
+        v = v + 1
+        txt_valore.value = v
+        txt_valore.update()
 
-        def conferma_strumento(e):
-            # Legge tipo e marca togliendo gli spazi a inizio/fine
-            tipo = input_tipo.value.strip()
-            marca = input_marca.value.strip()
+    def conferma_strumento(e):
+        # Legge tipo e marca togliendo gli spazi a inizio/fine
+        tipo = input_tipo.value.strip()
+        marca = input_marca.value.strip()
 
-            # Controllo campi obbligatori: se uno è vuoto mostra l'alert ed esce
-            # (il return evita di svuotare i campi, così l'utente non perde quanto scritto)
-            if tipo == "" or marca == "":
-                alert.show_alert("❌ Errore: inserisci tipo e marca.")
-                return
+        # Controllo campi obbligatori: se uno è vuoto mostra l'alert ed esce
+        # (il return evita di svuotare i campi, così l'utente non perde quanto scritto)
+        if tipo == "" or marca == "":
+            alert.show_alert("❌ Errore: inserisci tipo e marca.")
+            return
 
-            try:
-                anno = int(input_anno.value)  # int() solleva ValueError se il testo non è un intero
-            except ValueError:
-                alert.show_alert("❌ Errore: inserisci un valore numerico valido per l'anno.")
-                return
+        try:
+            anno = int(input_anno.value)  # int() solleva ValueError se il testo non è un intero
+        except ValueError:
+            alert.show_alert("❌ Errore: inserisci un valore numerico valido per l'anno.")
+            return
 
-            # Aggiunge lo strumento al deposito (il codice S<n> è generato dal deposito)
-            deposito.aggiungi_strumento(tipo, marca, anno, float(txt_valore.value))
+        # Aggiunge lo strumento al deposito (il codice S<n> è generato dal deposito)
+        deposito.aggiungi_strumento(tipo, marca, anno, float(txt_valore.value))
 
-            # Svuota i campi e azzera il contatore per il prossimo inserimento
+        # Svuota i campi e azzera il contatore per il prossimo inserimento
     input_tipo.value = ""
     input_marca.value = ""
     input_anno.value = ""
